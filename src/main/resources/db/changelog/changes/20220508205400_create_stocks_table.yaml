@@ -1,0 +1,69 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+
+  - changeSet:
+      id: 1
+      author: vlpetko
+      changes:
+        - createTable:
+            tableName: stocks
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: trading_date
+                  type: timestamp without time zone
+              - column:
+                  name: open_price
+                  type: double
+              - column:
+                  name: high_price
+                  type: double
+              - column:
+                  name: low_price
+                  type: double
+              - column:
+                  name: close_price
+                  type: double
+              - column:
+                  name: adj_close_price
+                  type: double
+              - column:
+                  name: volume
+                  type: int
+              - column:
+                  name: stock_name
+                  type: varchar(50)
+              - column:
+                  name: report_number
+                  type: int
+              - column:
+                  name: upload_date
+                  type: timestamp without time zone
+        - createTable:
+            tableName: rep_counter
+            columns:
+              - column:
+                  name: rep_id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: rep_counter_amount
+                  type: int
+        - insert:
+            tableName: rep_counter
+            columns:
+              - column:
+                  name: rep_id
+                  value: 1
+              - column:
+                  name: rep_counter_amount
+                  value: 0
