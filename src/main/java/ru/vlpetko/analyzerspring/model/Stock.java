@@ -15,6 +15,12 @@ import java.time.LocalDate;
 @Table(name = "stocks")
 public class Stock {
 
+    public Stock(String stockName, int reportNumber, LocalDate uploadDate) {
+        this.stockName = stockName;
+        this.reportNumber = reportNumber;
+        this.uploadDate = uploadDate;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
