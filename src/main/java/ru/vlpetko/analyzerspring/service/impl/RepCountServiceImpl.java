@@ -21,4 +21,9 @@ public class RepCountServiceImpl implements RepCountService {
 
         return reportCounter.getRepCounterAmount();
     }
+    @Override
+    public int getRepCount(){
+        ReportCounter reportCounter = repCountRepository.getById((long) 1);
+        return reportCounter.getRepCounterAmount();
+    }
 }

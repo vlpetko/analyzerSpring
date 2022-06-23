@@ -13,6 +13,8 @@ import ru.vlpetko.analyzerspring.constants.bot.BotMessageEnum;
 import ru.vlpetko.analyzerspring.telegram.handlers.CallbackQueryHandler;
 import ru.vlpetko.analyzerspring.telegram.handlers.MessageHandler;
 
+import java.io.IOException;
+
 @Getter
 @Setter
 public class StockBot extends SpringWebhookBot {
@@ -55,10 +57,14 @@ public class StockBot extends SpringWebhookBot {
         return null;
     }
 
-    private BotApiMethod<?> handleUpdate(Update update) {
+    /**
+     * Метод реализует выбор перехватчика событий.
+     */
+
+    private BotApiMethod<?> handleUpdate(Update update) throws IOException {
         if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
-            return null;
+            return callbackQueryHandler.processCallbackQuery(callbackQuery);
         } else {
             Message message = update.getMessage();
             if (message != null) {

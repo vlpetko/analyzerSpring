@@ -9,8 +9,12 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.vlpetko.analyzerspring.constants.bot.BotMessageEnum;
 import ru.vlpetko.analyzerspring.constants.bot.ButtonNameEnum;
 import ru.vlpetko.analyzerspring.constants.bot.CallbackDataPartsEnum;
+import ru.vlpetko.analyzerspring.service.BaseService;
 import ru.vlpetko.analyzerspring.telegram.buttons.InlineKeyboardMaker;
 import ru.vlpetko.analyzerspring.telegram.buttons.ReplyKeyboardMaker;
+import ru.vlpetko.analyzerspring.utils.StockUtils;
+
+import static ru.vlpetko.analyzerspring.utils.StockUtils.convertSringToStock;
 
 @Component
 @RequiredArgsConstructor
@@ -19,6 +23,7 @@ public class MessageHandler {
 
     private final ReplyKeyboardMaker replyKeyboardMaker;
     private final InlineKeyboardMaker inlineKeyboardMaker;
+    private  final BaseService baseService;
 
 
     public BotApiMethod<?> answerMessage(Message message) {
@@ -31,9 +36,16 @@ public class MessageHandler {
             throw new IllegalArgumentException();
         } else if (inputText.equals("/start")) {
             return getStartMessage(chatId);
-        }
-        else if (inputText.equals(ButtonNameEnum.SET_DATA_BUTTON.getButtonName())) {
+        } else if (inputText.equals(ButtonNameEnum.SET_DATA_BUTTON.getButtonName())) {
             return getDataMessage(chatId);
+        } else if (inputText.equals(ButtonNameEnum.REDACT_DATA_BUTTON.getButtonName())) {
+            return getDataMessage(chatId);
+        } else if (inputText.startsWith("/newStock")){
+            var newStock = convertSringToStock(inputText);
+            baseService.saveStock(newStock);
+        } else if (inputText.startsWith("/newFile")){
+            String[] fileData = inputText.split(",");
+            baseService.uploadFile(fileData[1]);
         } else {
             System.out.println("Fucking text");
         }

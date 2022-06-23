@@ -5,14 +5,14 @@ public enum CallbackDataPartsEnum {
     NEW_MANUAL_STOCK("Ручной ввод"),
     NEW_FILE_STOCK("Загрузка файла");
 
+    private final String CallbackDataParts;
 
-    private final String message;
-
-    CallbackDataPartsEnum(String message) {
-        this.message = message;
+    CallbackDataPartsEnum(String callbackDataParts)  {
+        this.CallbackDataParts = callbackDataParts;
     }
 
-    public String getMessage() {
-        return message;
+    public String getCallbackDataParts() {
+        return CallbackDataParts;
     }
 }
+

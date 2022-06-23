@@ -12,18 +12,13 @@ import java.util.List;
 @Component
 public class InlineKeyboardMaker {
 
-    public InlineKeyboardMarkup getInlineMessageButtonsWithTemplate(String prefix, boolean isUser){
-        InlineKeyboardMarkup inlineKeyboardMarkup = getInlineMessageButtons(prefix, isUser);
-        return inlineKeyboardMarkup;
-    }
-
     public InlineKeyboardMarkup getInlineMessageButtons(String prefix, boolean isUserDictionaryNeed) {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-       rowList.add(getButton(CallbackDataPartsEnum.NEW_MANUAL_STOCK.getMessage(),
-               prefix + CallbackDataPartsEnum.NEW_MANUAL_STOCK.getMessage()));
-       rowList.add(getButton(CallbackDataPartsEnum.NEW_FILE_STOCK.getMessage(),
-               prefix + CallbackDataPartsEnum.NEW_FILE_STOCK.getMessage()));
+       rowList.add(getButton(CallbackDataPartsEnum.NEW_MANUAL_STOCK.getCallbackDataParts(),
+               prefix + CallbackDataPartsEnum.NEW_MANUAL_STOCK.getCallbackDataParts()));
+       rowList.add(getButton(CallbackDataPartsEnum.NEW_FILE_STOCK.getCallbackDataParts(),
+               prefix + CallbackDataPartsEnum.NEW_FILE_STOCK.getCallbackDataParts()));
        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup(rowList);
        return inlineKeyboardMarkup;
     }

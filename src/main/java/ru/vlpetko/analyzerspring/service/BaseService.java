@@ -9,4 +9,6 @@ public interface BaseService {
     void deleteStock(Long stockId);
 
     Stock redactStock(Stock stock);
+
+    void uploadFile(String path);
 }

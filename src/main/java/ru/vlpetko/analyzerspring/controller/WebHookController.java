@@ -11,6 +11,7 @@ import ru.vlpetko.analyzerspring.telegram.StockBot;
 @RestController
 @AllArgsConstructor
 public class WebHookController {
+
     private final StockBot stockBot;
 
     @PostMapping("/")
