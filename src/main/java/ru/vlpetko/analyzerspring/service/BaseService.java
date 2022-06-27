@@ -11,4 +11,6 @@ public interface BaseService {
     Stock redactStock(Stock stock);
 
     void uploadFile(String path);
+
+    Stock getStockById(Long stockId);
 }

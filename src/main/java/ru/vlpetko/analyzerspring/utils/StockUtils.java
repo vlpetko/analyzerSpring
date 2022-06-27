@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Service
 public class StockUtils {
 
-    public static Stock convertSringToStock(String data){
+    public static Stock convertStringToStock(String data){
 
         String[] stockData = data.split(",");
 
@@ -55,5 +55,18 @@ public class StockUtils {
             System.out.println(e);
         }
         return stock;
+    }
+    public static String convertStockToString(Stock stock){
+        return "Дата торгов - " + stock.getTradingDate()
+                + "; Цена открытия - " + stock.getOpenPrice()
+                + "; Наибольшая цена - " + stock.getHighPrice()
+                + "; Низшая цена - " + stock.getLowPrice()
+                + "; Цена закрытия - " + stock.getClosePrice()
+                + "; Средняя цена закрытия - " + stock.getAdjClosePrice()
+                + "; Количество акций - " + stock.getVolume()
+                + "; Наименование акции - " + stock.getStockName()
+                + "; Номер отчета - " + stock.getReportNumber()
+                + "; Дата загрузки " + stock.getUploadDate()
+                + ";";
     }
 }

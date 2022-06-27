@@ -37,7 +37,13 @@ public class BaseServiceImpl implements BaseService {
             throw new IllegalArgumentException("Удаляемая акция не найдена: " + stockId);
         }
     }
-// ne realizovano
+
+    @Override
+    public Stock getStockById(Long stockId) {
+        return stockRepository.getById(stockId);
+    }
+
+    // ne realizovano
     @Override
     public Stock redactStock(Stock stock) {
         return stock;
