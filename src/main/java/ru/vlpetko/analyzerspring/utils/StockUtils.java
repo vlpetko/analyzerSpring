@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import ru.vlpetko.analyzerspring.model.Stock;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StockUtils {
@@ -56,6 +59,7 @@ public class StockUtils {
         }
         return stock;
     }
+
     public static String convertStockToString(Stock stock){
         return "Дата торгов - " + stock.getTradingDate()
                 + "; Цена открытия - " + stock.getOpenPrice()
@@ -68,5 +72,23 @@ public class StockUtils {
                 + "; Номер отчета - " + stock.getReportNumber()
                 + "; Дата загрузки " + stock.getUploadDate()
                 + ";";
+    }
+
+    public static List<String> convertStockToStringList(Stock stock){
+
+        List<String> stocks = new ArrayList<>();
+
+            stocks.add(String.valueOf(stock.getTradingDate()));
+            stocks.add(String.valueOf(stock.getOpenPrice()));
+            stocks.add(String.valueOf(stock.getHighPrice()));
+            stocks.add(String.valueOf(stock.getLowPrice()));
+            stocks.add(String.valueOf(stock.getClosePrice()));
+            stocks.add(String.valueOf(stock.getAdjClosePrice()));
+            stocks.add(String.valueOf(stock.getVolume()));
+            stocks.add(stock.getStockName());
+            stocks.add(String.valueOf(stock.getReportNumber()));
+            stocks.add(String.valueOf(stock.getUploadDate()));
+
+        return stocks;
     }
 }

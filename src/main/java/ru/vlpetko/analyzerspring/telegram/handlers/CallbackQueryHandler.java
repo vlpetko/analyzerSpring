@@ -46,18 +46,18 @@ public class CallbackQueryHandler {
         return new SendMessage(chatId, "Введите в строке команду /newFile и путь к файлу после запятой");
     }
     private SendMessage redactFile(String chatId){
-        return new SendMessage(chatId, "Введите в строке команду  и Id редактируемой акции после запятой");
+        return new SendMessage(chatId, "Введите в строке команду  и Id редактируемой акции через запятую");
     }
     private SendMessage getAllStocks(String chatId){
         return new SendMessage(chatId, "Введите в строке команду");
     }
     private SendMessage findStockById(String chatId){
-        return new SendMessage(chatId, "Введите в строке команду /findStock и Id акции после запятой");
+        return new SendMessage(chatId, "Введите в строке команду /findStock и Id акции через запятую");
     }
     private SendMessage deleteStock(String chatId){
-        return new SendMessage(chatId, "Введите в строке команду /delete и Id акции после запятой");
+        return new SendMessage(chatId, "Введите в строке команду /delete и Id акции через запятую");
     }
     private SendMessage findStockByTicker(String chatId){
-        return new SendMessage(chatId, "Введите в строке команду и Id акции после запятой");
+        return new SendMessage(chatId, "Введите в строке команду /findTicker и наименование акции через запятую");
     }
 }

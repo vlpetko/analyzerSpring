@@ -23,4 +23,4 @@ spring:
 api-url: "https://api.telegram.org/"
 webhook-path: "https://5a14-92-124-163-91.eu.ngrok.io"
 bot-name: "StockManager22Bot"
-bot-token:
+bot-token: "5338435964:AAF0Uh_K8czaegmS_PFKLjKpcOqgX5Vj4CA"
