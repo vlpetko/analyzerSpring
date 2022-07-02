@@ -6,9 +6,10 @@ public enum BotMessageEnum {
 
     CHOOSE_METHOD_MESSAGE("Выберите способ загрузки\uD83D\uDC47 "),
     REDACT_MENU_MESSAGE("Меню редактора"),
-
+    EXCEPTION_NOT_FOUND("Ничего не найдено"),
     EXCEPTION_ILLEGAL_MESSAGE("Нет, к такому меня не готовили! Я работаю или с текстом, или с файлом"),
     EXCEPTION_WHAT_THE_FUCK("Что-то пошло не так. Обратитесь к программисту"),
+    EXCEPTION_UPLOAD_FILE("Ошибка загрузки"),
     HELP_MESSAGE("Do you need help?");
 
     private final String message;

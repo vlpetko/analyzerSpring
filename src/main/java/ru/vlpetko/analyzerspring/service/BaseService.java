@@ -2,6 +2,8 @@ package ru.vlpetko.analyzerspring.service;
 
 import ru.vlpetko.analyzerspring.model.Stock;
 
+import java.util.List;
+
 public interface BaseService {
 
     Stock saveStock(Stock stock);
@@ -13,4 +15,6 @@ public interface BaseService {
     void uploadFile(String path);
 
     Stock getStockById(Long stockId);
+
+    List<Stock> getStockByTicker(String stockName);
 }

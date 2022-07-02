@@ -43,6 +43,11 @@ public class BaseServiceImpl implements BaseService {
         return stockRepository.getById(stockId);
     }
 
+    @Override
+    public List<Stock> getStockByTicker(String stockName) {
+        return stockRepository.findStocksByStockName(stockName);
+    }
+
     // ne realizovano
     @Override
     public Stock redactStock(Stock stock) {

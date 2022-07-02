@@ -12,4 +12,6 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 
     @Query("select new Stock(s.stockName, s.reportNumber, s.uploadDate) from Stock s group by s.reportNumber, s.stockName, s.uploadDate order by s.reportNumber ")
     List<Stock> findAllDistinctByReportNumber();
+
+    List<Stock> findStocksByStockName(String stockName);
 }

@@ -1,6 +1,5 @@
 package ru.vlpetko.analyzerspring.model;
 
-import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 import lombok.AllArgsConstructor;
