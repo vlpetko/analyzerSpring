@@ -48,6 +48,8 @@ public class MessageHandler {
             return getDataMessage(chatId);
         } else if (inputText.equals(ButtonNameEnum.REDACT_DATA_BUTTON.getButtonName())) {
             return getRedactMessage(chatId);
+        } else if (inputText.equals(ButtonNameEnum.GENERATE_REPORT_BUTTON.getButtonName())) {
+            return getAllReportsMessage(chatId);
         } else if (inputText.startsWith("/newStock")){
             var newStock = convertStringToStock(inputText);
             baseService.saveStock(newStock);
@@ -63,6 +65,14 @@ public class MessageHandler {
         } else if (inputText.startsWith("/findTicker")){
             String[] inputData = inputText.split(",");
             return getStockByTickerMessage(chatId, inputData[1]);
+        } else if (inputText.startsWith("/redact")){
+            var newStock = redactStockFromString(inputText);
+            baseService.saveStock(newStock);
+        } else if (inputText.equals("/getAll")) {
+            return getAllStocks(chatId);
+        } else if (inputText.startsWith("/report")){
+            String[] inputData = inputText.split(",");
+            return getReportByNumber(chatId, Integer.valueOf(inputData[1]));
         } else {
             System.out.println("Fucking text");
         }
@@ -112,6 +122,43 @@ public class MessageHandler {
                     return new SendMessage(chatId, BotMessageEnum.EXCEPTION_UPLOAD_FILE.getMessage());
                 }
             }
+        }
+        return sendMessage;
+    }
+    private SendMessage getAllStocks(String chatId){
+        List<Stock> stocks = baseService.getAllStocks();
+        List<List<String>> stockLists = new ArrayList<>();
+        for (Stock st: stocks) {
+            List<String> stockList = convertStockToStringList(st);
+            stockLists.add(stockList);
+        }
+        SendMessage sendMessage = new SendMessage();
+        try {
+            ByteArrayResource byteArrayResource = generateFileService.generateStocksInfoDocument(stockLists, "AllStocks");
+            telegramApiClient.uploadFile(chatId, byteArrayResource);
+        }catch (Exception e){
+            return new SendMessage(chatId, BotMessageEnum.EXCEPTION_UPLOAD_FILE.getMessage());
+        }
+        return sendMessage;
+    }
+
+    private SendMessage getAllReportsMessage(String chatId){
+        List<Stock> stocks = baseService.getReports();
+        return new SendMessage(chatId, convertStockToReports(stocks));
+    }
+    private SendMessage getReportByNumber(String chatId, Integer repNumber){
+        List<Stock> stocks = baseService.getReportByNumber(repNumber);
+        List<List<String>> stockLists = new ArrayList<>();
+        for (Stock st: stocks) {
+            List<String> stockList = convertStockToStringList(st);
+            stockLists.add(stockList);
+        }
+        SendMessage sendMessage = new SendMessage();
+        try {
+            ByteArrayResource byteArrayResource = generateFileService.generateStocksInfoDocument(stockLists, "report_" + repNumber);
+            telegramApiClient.uploadFile(chatId, byteArrayResource);
+        }catch (Exception e){
+            return new SendMessage(chatId, BotMessageEnum.EXCEPTION_UPLOAD_FILE.getMessage());
         }
         return sendMessage;
     }

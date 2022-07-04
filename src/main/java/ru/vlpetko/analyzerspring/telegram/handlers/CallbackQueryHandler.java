@@ -6,7 +6,6 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import ru.vlpetko.analyzerspring.constants.bot.CallbackDataPartsEnum;
-import ru.vlpetko.analyzerspring.telegram.TelegramApiClient;
 
 import java.io.IOException;
 
@@ -46,10 +45,10 @@ public class CallbackQueryHandler {
         return new SendMessage(chatId, "Введите в строке команду /newFile и путь к файлу после запятой");
     }
     private SendMessage redactFile(String chatId){
-        return new SendMessage(chatId, "Введите в строке команду  и Id редактируемой акции через запятую");
+        return new SendMessage(chatId, "Введите в строке команду /redact, Id редактируемой акции и данные через запятую");
     }
     private SendMessage getAllStocks(String chatId){
-        return new SendMessage(chatId, "Введите в строке команду");
+        return new SendMessage(chatId, "Введите в строке команду /getAll");
     }
     private SendMessage findStockById(String chatId){
         return new SendMessage(chatId, "Введите в строке команду /findStock и Id акции через запятую");

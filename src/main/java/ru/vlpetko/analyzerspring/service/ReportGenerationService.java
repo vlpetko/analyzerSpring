@@ -7,4 +7,6 @@ import java.util.List;
 public interface ReportGenerationService {
 
     List<Stock> getAllStocks();
+
+    List<Stock> getStocksByReportNumber(int repNumber);
 }

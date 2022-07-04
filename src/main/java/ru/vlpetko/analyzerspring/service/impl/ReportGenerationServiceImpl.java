@@ -18,4 +18,8 @@ public class ReportGenerationServiceImpl implements ReportGenerationService {
     public List<Stock> getAllStocks(){
         return stockRepository.findAllDistinctByReportNumber();
     }
+    @Override
+    public List<Stock> getStocksByReportNumber(int repNumber){
+        return stockRepository.getAllByReportNumber(repNumber);
+    }
 }

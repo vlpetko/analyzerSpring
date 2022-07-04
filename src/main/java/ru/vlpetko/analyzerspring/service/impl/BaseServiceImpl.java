@@ -44,6 +44,11 @@ public class BaseServiceImpl implements BaseService {
     }
 
     @Override
+    public List<Stock> getAllStocks() {
+        return stockRepository.findAll();
+    }
+
+    @Override
     public List<Stock> getStockByTicker(String stockName) {
         return stockRepository.findStocksByStockName(stockName);
     }
@@ -79,5 +84,13 @@ public class BaseServiceImpl implements BaseService {
                 e.printStackTrace();
             }
         }
+    }
+    @Override
+    public List<Stock> getReports(){
+        return stockRepository.getDistinctByReportNumber();
+    }
+    @Override
+    public List<Stock> getReportByNumber(Integer repNumber){
+        return stockRepository.getAllByReportNumber(repNumber);
     }
 }

@@ -16,5 +16,11 @@ public interface BaseService {
 
     Stock getStockById(Long stockId);
 
+    List<Stock> getAllStocks();
+
     List<Stock> getStockByTicker(String stockName);
+
+    List<Stock> getReports();
+
+    List<Stock> getReportByNumber(Integer repNumber);
 }

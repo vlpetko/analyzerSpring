@@ -6,7 +6,6 @@ import ru.vlpetko.analyzerspring.model.Stock;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class StockUtils {
@@ -73,6 +72,15 @@ public class StockUtils {
                 + "; Дата загрузки " + stock.getUploadDate()
                 + ";";
     }
+    public static String convertStockToReports(List<Stock> stocks){
+        String reports = "Введите команду /report и номер отчета после запятой:\n";
+        for (int i = 0; i < stocks.size(); i++) {
+            Stock stock = stocks.get(i);
+            reports = reports + " Номер отчета: " + stock.getReportNumber() + ", наименование акции: " + stock.getStockName()
+                    + ", дата загрузки: " + stock.getUploadDate() + "\n";
+        }
+        return reports;
+    }
 
     public static List<String> convertStockToStringList(Stock stock){
 
@@ -90,5 +98,59 @@ public class StockUtils {
             stocks.add(String.valueOf(stock.getUploadDate()));
 
         return stocks;
+    }
+
+    public static Stock redactStockFromString(String data){
+
+        String[] stockData = data.split(",");
+
+        Stock stock = new Stock();
+
+        try {
+            stock.setId(Long.valueOf(stockData[1]));
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setTradingDate(LocalDate.parse(stockData[2]));
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setOpenPrice(Double.parseDouble(stockData[3]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setHighPrice(Double.parseDouble(stockData[4]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setLowPrice(Double.parseDouble(stockData[5]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setClosePrice(Double.parseDouble(stockData[6]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setAdjClosePrice(Double.parseDouble(stockData[7]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setVolume(Integer.parseInt(stockData[8]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        try {
+            stock.setStockName((stockData[9]));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return stock;
     }
 }
